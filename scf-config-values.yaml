@@ -1,8 +1,8 @@
 env:
     # Domain for SCF. DNS for *.DOMAIN must point to a kube node's (not master)
     # external ip address.
-    DOMAIN: 1.students.engineerbetter.com
-    UAA_HOST: uaa.1.students.engineerbetter.com
+    DOMAIN: changeme
+    UAA_HOST: changeme
     UAA_PORT: 2793
 
 kube:
@@ -10,7 +10,7 @@ kube:
     #### the external_ip setting changed to accept a list of IPs, and was
     #### renamed to external_ips
     external_ips:
-    - 35.195.76.169
+    - changeme
     storage_class:
         # Make sure to change the value in here to whatever storage class you use
         persistent: "standard"
