@@ -1,0 +1,4 @@
+apiVersion: 2.13.3+cf2.7.0.0.gf95d9aed
+description: A Helm chart for SUSE Cloud Foundry
+name: cf-opensuse
+version: 2.13.3

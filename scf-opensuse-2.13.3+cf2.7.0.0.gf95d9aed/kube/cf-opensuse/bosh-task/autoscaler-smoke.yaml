@@ -1,0 +1,76 @@
+---
+# The autoscaler-smoke instance group contains the following jobs:
+#
+# - global-properties: Dummy BOSH job used to host global parameters that are
+#   required to configure SCF
+#
+# - authorize-internal-ca: Install both internal and UAA CA certificates
+#
+# - autoscaler-smoke: Smoke tests for the app-autoscaler release
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+  name: "autoscaler-smoke"
+  labels:
+    skiff-role-name: "autoscaler-smoke"
+spec:
+  containers:
+  - env:
+    - name: "AUTOSCALER_SERVICE_BROKER_PASSWORD"
+      valueFrom:
+        secretKeyRef:
+          key: "autoscaler-service-broker-password"
+          name: "secrets"
+    - name: "CLUSTER_ADMIN_PASSWORD"
+      valueFrom:
+        secretKeyRef:
+          key: "cluster-admin-password"
+          name: "secrets"
+    - name: "DOMAIN"
+      value: "cf-dev.io"
+    - name: "GARDEN_ROOTFS_DRIVER"
+      value: "btrfs"
+    - name: "INTERNAL_CA_CERT"
+      valueFrom:
+        secretKeyRef:
+          key: "internal-ca-cert"
+          name: "secrets"
+    - name: "KUBERNETES_NAMESPACE"
+      valueFrom:
+        fieldRef:
+          fieldPath: "metadata.namespace"
+    - name: "MONIT_PASSWORD"
+      valueFrom:
+        secretKeyRef:
+          key: "monit-password"
+          name: "secrets"
+    - name: "SCF_LOG_PORT"
+      value: "514"
+    - name: "SCF_LOG_PROTOCOL"
+      value: "tcp"
+    - name: "UAA_CA_CERT"
+      valueFrom:
+        secretKeyRef:
+          key: "uaa-ca-cert"
+          name: "secrets"
+    image: "splatform/scf-autoscaler-smoke:6d878af770fe87f95e84307b7d9c9ed0a4ab0b72"
+    lifecycle:
+      preStop:
+        exec:
+          command:
+          - "/opt/fissile/pre-stop.sh"
+    livenessProbe: ~
+    name: "autoscaler-smoke"
+    ports: ~
+    readinessProbe: ~
+    resources:
+      requests: {}
+      limits: {}
+    securityContext: ~
+    volumeMounts: ~
+  dnsPolicy: "ClusterFirst"
+  imagePullSecrets:
+  - name: "registry-credentials"
+  restartPolicy: "Never"
+  terminationGracePeriodSeconds: 600
+  volumes: ~
