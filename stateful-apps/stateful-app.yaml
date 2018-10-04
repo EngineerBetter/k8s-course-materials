@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stateful-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stateful-app
+  template:
+    metadata:
+      labels:
+        app: stateful-app
+    spec:
+      containers:
+      - name: stateful-app
+        image: engineerbetter/stateful-app
+        imagePullPolicy: Always
+        tty: true
+        stdin: true
+        ports:
+        - containerPort: 9292

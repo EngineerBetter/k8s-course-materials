@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-lb
+spec:
+  ports:
+  - port: 80
+    targetPort: 9292
+  selector:
+  type: LoadBalancer
+  loadBalancerIP:

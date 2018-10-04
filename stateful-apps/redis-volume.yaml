@@ -1,0 +1,12 @@
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: redis-volume
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
