@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debug-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: debug-app
+  template:
+    metadata:
+      labels:
+        app: debug-app
+    spec:
+      containers:
+      - name: debug-app
+        image: engineerbetter/debug-app
+        env:
+        - name: FIXED
+          value: ""
+        tty: true
+        stdin: true
+        ports:
+        - containerPort: 9292
