@@ -2,8 +2,6 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: hello-world-ingress
-  annotations:
-    kubernetes.io/ingress.global-static-ip-name: ingress
 spec:
   backend:
     serviceName: hello-world-np

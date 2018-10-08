@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-world-ingress
+spec:
+  rules:
+  - host: hello-world-app.domain-lab.1.${COURSE_DOMAIN}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hello-world-np
+          servicePort: 80
+  - host: debug-app.domain-lab.1.${COURSE_DOMAIN}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName:
+          servicePort: 80
