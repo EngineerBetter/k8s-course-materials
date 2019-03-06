@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-world
+  name: hello-kubernetes
 spec:
   selector:
     matchLabels:
-      app: hello-world
+      app: hello-kubernetes
   template:
     metadata:
       labels:
-        app: hello-world
+        app: hello-kubernetes
     spec:
       containers:
       - image: gcr.io/google-samples/hello-app:1.0
-        name: hello-world
+        name: hello-kubernetes
         ports:
         - containerPort: 8080
